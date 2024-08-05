@@ -33,6 +33,7 @@ body {
 }
 
 main {
+  position: relative;
   width: 300px;
   height: 150px;
   border: 1px solid white;
@@ -44,6 +45,24 @@ main {
   align-items: center;
 }
 
+a {
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0s 0s;
+
+  img {
+    width: 32px;
+    height: 32px;
+  }
+}
+#open:has(input:checked) ~ a {
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0s 8.7s;
+}
 
 /* BUTTONS / BUTTONS / BUTTONS / BUTTONS / BUTTONS / BUTTONS */
 
@@ -210,8 +229,6 @@ span.l-e::after {
   95%  { counter-increment: l-e -7  } /* e */
   100% { counter-increment: l-e -7  }
 }
-
-
 
 @keyframes l-e {
   0%   { }                           /* l */
