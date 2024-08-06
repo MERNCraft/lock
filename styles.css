@@ -46,16 +46,19 @@ main {
 }
 
 a {
-  position: absolute;
-  right: 5px;
-  bottom: 0;
+  width: 0;
+  height: 0;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0s 0s;
 
   img {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
     width: 32px;
     height: 32px;
+    filter: grayscale(1);
   }
 }
 #open:has(input:checked) ~ a {
