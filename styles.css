@@ -40,12 +40,32 @@ main {
   box-sizing: border-box;
   border-radius: var(--gap);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-a {
+a.refresh {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 8px 16px;
+  color: #ddd;
+  text-decoration: none;
+  background-color: #060;
+  border: 1px outset #090;
+  border-radius: 8px;
+
+  &:hover {
+    color: #fff;
+  }
+  
+  &:hover:active {
+    border-style: inset;
+    background-color: #030;
+  }
+}
+
+a.github {
   width: 0;
   height: 0;
   opacity: 0;
@@ -61,6 +81,7 @@ a {
     filter: grayscale(1);
   }
 }
+
 #open:has(input:checked) ~ a {
   opacity: 1;
   pointer-events: all;
@@ -114,9 +135,36 @@ button.primary:active:hover,
 #lock :checked ~ span {
   background: #000
 }
+
 input {
   position: absolute;
-  left: -999vw;
+  /* left: -999vw; */
+}
+label:nth-child(2) input {
+  position: absolute;
+  left: 1em;
+  /* left: -999vw; */
+}
+label:nth-child(4) input {
+  position: absolute;
+  top: 1em;
+  /* left: -999vw; */
+}
+label:nth-child(5) input {
+  position: absolute;
+  top: 2em;
+  /* left: -999vw; */
+}
+label:nth-child(6) input {
+  position: absolute;
+  top: 3em;
+  /* left: -999vw; */
+}
+
+label input {
+  position: absolute;
+  border-top-style: 2em;
+  /* left: -999vw; */
 }
 
 span::after {
@@ -147,6 +195,7 @@ span.l-e::after {
   content: counter(l-e, upper-alpha)
 }
 
+/* 
 #open:has(:checked) ~ div .w-d {
   animation-name: w-d;
   animation-duration: 2s;
@@ -173,20 +222,84 @@ span.l-e::after {
   animation-delay: 5s;
   animation-fill-mode: forwards;
 }
+*/
 
-@keyframes w-d {
-  0%   { }                            /* w */
-  1%   { counter-increment: w-d +1  } /* x */
-  20%  { counter-increment: w-d +2  } /* y */
-  30%  { counter-increment: w-d +3  } /* z */
-  40%  { counter-increment: w-d -22 } /* a */
-  50%  { counter-increment: w-d -21 } /* b */
-  60%  { counter-increment: w-d -20 } /* c */
-  70%  { counter-increment: w-d -19 } /* d */
-  100% { counter-increment: w-d -19 }
+@keyframes w-d-short {
+   0% { }                            /* w */
+   8% { counter-increment: w-d  +0 } /* w */
+  20% { counter-increment: w-d  +1 } /* x */
+  32% { counter-increment: w-d  +2 } /* y */
+  44% { counter-increment: w-d  +3 } /* z */
+  56% { counter-increment: w-d -22 } /* a */
+  68% { counter-increment: w-d -21 } /* b */
+  80% { counter-increment: w-d -20 } /* c */
+  92% { counter-increment: w-d -19 } /* d */
+ 100% { counter-increment: w-d -19 }
 }
 
-@keyframes e-o {
+
+@keyframes d-w-short {
+   0% { counter-increment: w-d -19 } /* d */
+   8% { counter-increment: w-d -19 } /* d */
+  20% { counter-increment: w-d -20 } /* c */
+  32% { counter-increment: w-d -21 } /* b */
+  44% { counter-increment: w-d -22 } /* a */
+  56% { counter-increment: w-d  +3 } /* z */
+  68% { counter-increment: w-d  +2 } /* y */
+  80% { counter-increment: w-d  +1 } /* x */
+  92% { counter-increment: w-d  +0 } /* w */
+ 100% { }
+}
+
+@keyframes w-d-long {
+   0% { }                            /* w */
+   5% { counter-increment: w-d  -0 } /* w */
+  10% { counter-increment: w-d  -1 } /* v */
+  15% { counter-increment: w-d  -2 } /* u */
+  20% { counter-increment: w-d  -3 } /* t */
+  25% { counter-increment: w-d  -4 } /* s */
+  30% { counter-increment: w-d  -5 } /* r */
+  35% { counter-increment: w-d  -6 } /* q */
+  40% { counter-increment: w-d  -7 } /* p */
+  45% { counter-increment: w-d  -8 } /* o */
+  50% { counter-increment: w-d  -9 } /* n */
+  55% { counter-increment: w-d -10 } /* m */
+  60% { counter-increment: w-d -11 } /* l */
+  65% { counter-increment: w-d -12 } /* k */
+  70% { counter-increment: w-d -13 } /* j */
+  75% { counter-increment: w-d -14 } /* i */
+  80% { counter-increment: w-d -15 } /* h */
+  85% { counter-increment: w-d -16 } /* g */
+  90% { counter-increment: w-d -17 } /* f */
+  95% { counter-increment: w-d -18 } /* e */
+ 100% { counter-increment: w-d -19 } /* d */
+}
+
+@keyframes d-w-long {
+   0% { counter-increment: w-d -19 } /* d */
+   5% { counter-increment: w-d -18 } /* e */
+  10% { counter-increment: w-d -17 } /* f */
+  15% { counter-increment: w-d -16 } /* g */
+  20% { counter-increment: w-d -15 } /* h */
+  25% { counter-increment: w-d -14 } /* i */
+  30% { counter-increment: w-d -13 } /* j */
+  35% { counter-increment: w-d -12 } /* k */
+  40% { counter-increment: w-d -11 } /* l */
+  45% { counter-increment: w-d -10 } /* m */
+  50% { counter-increment: w-d  -9 } /* n */
+  55% { counter-increment: w-d  -8 } /* o */
+  60% { counter-increment: w-d  -7 } /* p */
+  65% { counter-increment: w-d  -6 } /* q */
+  70% { counter-increment: w-d  -5 } /* r */
+  75% { counter-increment: w-d  -4 } /* s */
+  80% { counter-increment: w-d  -3 } /* t */
+  85% { counter-increment: w-d  -2 } /* u */
+  90% { counter-increment: w-d  -1 } /* v */
+  95% { counter-increment: w-d  -0 } /* w */
+ 100% {  }
+}
+
+@keyframes e-o-short {
   0%   { }                            /* e */
   1%   { counter-increment: e-o +1  } /* f */
   10%  { counter-increment: e-o +2  } /* g */
@@ -201,30 +314,175 @@ span.l-e::after {
   100% { counter-increment: e-o +10 }
 }
 
-@keyframes l-n {
+@keyframes o-e-short {
+   0%  { counter-increment: e-o +10 }  /* e */
+   1%  { counter-increment: e-o +10 } /* o */
+  10%  { counter-increment: e-o +9  } /* n */
+  20%  { counter-increment: e-o +8  } /* m */
+  30%  { counter-increment: e-o +7  } /* l */
+  40%  { counter-increment: e-o +6  } /* k */
+  50%  { counter-increment: e-o +5  } /* j */
+  60%  { counter-increment: e-o +4  } /* i */
+  70%  { counter-increment: e-o +3  } /* h */
+  80%  { counter-increment: e-o +2  } /* g */
+  90%  { counter-increment: e-o +1  } /* f */
+  100% { counter-increment: e-o +0 }
+}
+
+@keyframes e-o-long {
+   0%  { }                            /* e */
+   2%  { counter-increment: e-o  -1 } /* e */
+   8%  { counter-increment: e-o  -2 } /* d */
+  14%  { counter-increment: e-o  -3 } /* c */
+  20%  { counter-increment: e-o  -4 } /* b */
+  26%  { counter-increment: e-o  -5 } /* a */
+  32%  { counter-increment: e-o +21 } /* z */
+  38%  { counter-increment: e-o +20 } /* y */
+  44%  { counter-increment: e-o +19 } /* x */
+  50%  { counter-increment: e-o +18 } /* w */
+  56%  { counter-increment: e-o +17 } /* v */
+  62%  { counter-increment: e-o +16 } /* u */
+  68%  { counter-increment: e-o +15 } /* t */
+  74%  { counter-increment: e-o +14 } /* s */
+  80%  { counter-increment: e-o +13 } /* r */
+  86%  { counter-increment: e-o +12 } /* q */
+  92%  { counter-increment: e-o +11 } /* p */
+  98%  { counter-increment: e-o +10 } /* o */
+  100% { counter-increment: e-o +10 }
+}
+
+@keyframes o-e-long {
+   0%  { counter-increment: e-o +10 } /* e */
+   2%  { counter-increment: e-o +10 } /* o */
+   8%  { counter-increment: e-o +11 } /* p */
+  14%  { counter-increment: e-o +12 } /* q */
+  20%  { counter-increment: e-o +13 } /* r */
+  26%  { counter-increment: e-o +14 } /* s */
+  32%  { counter-increment: e-o +15 } /* t */
+  38%  { counter-increment: e-o +16 } /* u */
+  44%  { counter-increment: e-o +17 } /* v */
+  50%  { counter-increment: e-o +18 } /* w */
+  56%  { counter-increment: e-o +19 } /* x */
+  62%  { counter-increment: e-o +20 } /* y */
+  68%  { counter-increment: e-o +21 } /* z */
+  74%  { counter-increment: e-o  -5 } /* a */
+  80%  { counter-increment: e-o  -4 } /* b */
+  86%  { counter-increment: e-o  -3 } /* c */
+  92%  { counter-increment: e-o  -2 } /* d */
+  98%  { counter-increment: e-o  -1 } /* e */
+  100% { counter-increment: e-o  +0 }
+}
+
+@keyframes l-n-short {
   0%   { }                           /* l */
   30%  { counter-increment: l-n +1 } /* m */
   60%  { counter-increment: l-n +2 } /* n */
   100% { counter-increment: l-n +2 }
 }
 
-@keyframes l-e_old {
+@keyframes n-l-short {
+  0%   { counter-increment: l-n +2 } /* n */
+  60%  { counter-increment: l-n +2 } /* n */
+  30%  { counter-increment: l-n +1 } /* m */
+  100% { counter-increment: l-n +0 } /* l */
+}
+
+@keyframes l-n-long {
+   0% { counter-increment: l-n  -0 } /* l */
+   6% { counter-increment: l-n  -1 } /* k */
+  10% { counter-increment: l-n  -2 } /* j */
+  14% { counter-increment: l-n  -3 } /* i */
+  18% { counter-increment: l-n  -4 } /* h */
+  22% { counter-increment: l-n  -5 } /* g */
+  26% { counter-increment: l-n  -6 } /*  */
+  30% { counter-increment: l-n  -7 } /* e */
+  34% { counter-increment: l-n  -8 } /* d */
+  38% { counter-increment: l-n  -9 } /* c */
+  42% { counter-increment: l-n -10 } /* b */
+  46% { counter-increment: l-n -11 } /* a */
+  50% { counter-increment: l-n +14 } /* z */
+  54% { counter-increment: l-n +13 } /* y */
+  58% { counter-increment: l-n +12 } /* x */
+  62% { counter-increment: l-n +11 } /* w */
+  66% { counter-increment: l-n +10 } /* v */
+  70% { counter-increment: l-n  +9 } /* u */
+  74% { counter-increment: l-n  +8 } /* t */
+  78% { counter-increment: l-n  +7 } /* s */
+  82% { counter-increment: l-n  +6 } /* r */
+  86% { counter-increment: l-n  +5 } /* q */
+  90% { counter-increment: l-n  +4 } /* p */
+  94% { counter-increment: l-n  +3 } /* o */
+ 100% { counter-increment: l-n  +2 } /* n */
+}
+
+@keyframes n-l-long {
+   0% { counter-increment: l-n  +2 } /* n */
+   6% { counter-increment: l-n  +3 } /* o */
+  10% { counter-increment: l-n  +4 } /* p */
+  14% { counter-increment: l-n  +5 } /* q */
+  18% { counter-increment: l-n  +6 } /* r */
+  22% { counter-increment: l-n  +7 } /* s */
+  26% { counter-increment: l-n  +8 } /* t */
+  30% { counter-increment: l-n  +9 } /* u */
+  34% { counter-increment: l-n +10 } /* v */
+  38% { counter-increment: l-n +11 } /* w */
+  42% { counter-increment: l-n +12 } /* x */
+  46% { counter-increment: l-n +13 } /* y */
+  50% { counter-increment: l-n +14 } /* z */
+  54% { counter-increment: l-n -11 } /* a */
+  58% { counter-increment: l-n -10 } /* b */
+  62% { counter-increment: l-n  -9 } /* c */
+  66% { counter-increment: l-n  -8 } /* d */
+  70% { counter-increment: l-n  -7 } /* e */
+  74% { counter-increment: l-n  -6 } /*  */
+  78% { counter-increment: l-n  -5 } /* g */
+  82% { counter-increment: l-n  -4 } /* h */
+  86% { counter-increment: l-n  -3 } /* i */
+  90% { counter-increment: l-n  -2 } /* j */
+  94% { counter-increment: l-n  -1 } /* k */
+ 100% { counter-increment: l-n  -0 } /* l */
+}
+
+@keyframes l-e-short {
+  0%   { }                           /* l */
+  14%  { counter-increment: l-e -1 } /* k */
+  26%  { counter-increment: l-e -2 } /* j */
+  38%  { counter-increment: l-e -3 } /* i */
+  50%  { counter-increment: l-e -4 } /* h */
+  62%  { counter-increment: l-e -5 } /* g */
+  74%  { counter-increment: l-e -6 } /* f */
+  86%  { counter-increment: l-e -7 } /* e */
+  100% { counter-increment: l-e -7 }
+}
+
+@keyframes e-l-short {
+  0%   { counter-increment: l-e -7 } /* e */
+  14%  { counter-increment: l-e -7 } /* e */
+  26%  { counter-increment: l-e -6 } /* f */
+  38%  { counter-increment: l-e -5 } /* g */
+  50%  { counter-increment: l-e -4 } /* h */
+  62%  { counter-increment: l-e -3 } /* i */
+  74%  { counter-increment: l-e -2 } /* j */
+  86%  { counter-increment: l-e -1 } /* k */
+  100% { counter-increment: l-e -0 }
+}
+
+@keyframes l-e-long {
   0%   { }                            /* l */
-  5%   { counter-increment: l-e +1  } /* m */
-  10%  { counter-increment: l-e +2  } /* n */
-  15%  { counter-increment: l-e +3  } /* o */
-  20%  { counter-increment: l-e +4  } /* p */
-  25%  { counter-increment: l-e +5  } /* q */
-  30%  { counter-increment: l-e +6  } /* r */
-  35%  { counter-increment: l-e +7  } /* s */
-  40%  { counter-increment: l-e +8  } /* t */
-  45%  { counter-increment: l-e +9  } /* u */
+  5%   { counter-increment: l-e  +1 } /* m */
+  10%  { counter-increment: l-e  +2 } /* n */
+  15%  { counter-increment: l-e  +3 } /* o */
+  20%  { counter-increment: l-e  +4 } /* p */
+  25%  { counter-increment: l-e  +5 } /* q */
+  30%  { counter-increment: l-e  +6 } /* r */
+  35%  { counter-increment: l-e  +7 } /* s */
+  40%  { counter-increment: l-e  +8 } /* t */
+  45%  { counter-increment: l-e  +9 } /* u */
   50%  { counter-increment: l-e +10 } /* v */
   55%  { counter-increment: l-e +11 } /* w */
   60%  { counter-increment: l-e +12 } /* x */
   65%  { counter-increment: l-e +13 } /* y */
   70%  { counter-increment: l-e +14 } /* z */
-
   75%  { counter-increment: l-e -11 } /* a */
   80%  { counter-increment: l-e -10 } /* b */
   85%  { counter-increment: l-e -9  } /* c */
@@ -233,14 +491,307 @@ span.l-e::after {
   100% { counter-increment: l-e -7  }
 }
 
-@keyframes l-e {
-  0%   { }                           /* l */
-  10%  { counter-increment: l-e -1 } /* k */
-  20%  { counter-increment: l-e -2 } /* j */
-  30%  { counter-increment: l-e -3 } /* i */
-  40%  { counter-increment: l-e -4 } /* h */
-  50%  { counter-increment: l-e -5 } /* g */
-  60%  { counter-increment: l-e -6 } /* f */
-  70%  { counter-increment: l-e -7 } /* e */
-  100% { counter-increment: l-e -7 }
+@keyframes e-l-long {
+  0%   { counter-increment: l-e -7  } /* e */
+  5%   { counter-increment: l-e -8  } /* d */
+  10%  { counter-increment: l-e -9  } /* c */
+  15%  { counter-increment: l-e -1  } /* b */
+  20%  { counter-increment: l-e -10 } /* a */
+  25%  { counter-increment: l-e +11 } /* z */
+  30%  { counter-increment: l-e +14 } /* y */
+  35%  { counter-increment: l-e +13 } /* x */
+  40%  { counter-increment: l-e +12 } /* w */
+  45%  { counter-increment: l-e +11 } /* v */
+  50%  { counter-increment: l-e +10 } /* m */
+  55%  { counter-increment: l-e  +9 } /* u */
+  60%  { counter-increment: l-e  +8 } /* t */
+  65%  { counter-increment: l-e  +7 } /* s */
+  70%  { counter-increment: l-e  +6 } /* r */
+  75%  { counter-increment: l-e  +5 } /* q */
+  80%  { counter-increment: l-e  +4 } /* p */
+  85%  { counter-increment: l-e  +3 } /* o */
+  90%  { counter-increment: l-e  +2 } /* n */
+  95%  { counter-increment: l-e  +1 } /* m */
+  100% { counter-increment: l-e  +0 } /* l */
+}
+
+div[class] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  --warning: 30px solid #f06;
+  --triangle: 30px solid #060;
+
+  label {
+    display: block;
+    position: relative;
+
+    span {
+      font-size: 0;
+      border: 24px solid transparent;
+      display: block;
+    }
+
+    /* By default, show the warning button */
+    &.up {
+      span {
+        border-bottom: var(--warning);
+      }
+    }
+
+    &.down {
+      span {
+        border-top: var(--warning);
+      }
+    }
+  }
+}
+
+/* Only show the safe triangle for the .safe buttons...
+ * ... and hide them all...
+ */
+div[class] label.down.safe span {
+  border-top: var(--triangle);
+  display: none;
+}
+div[class] label.up.safe span {
+  border-bottom: var(--triangle);
+  display: none;
+}
+/* ... except the first one. */
+div.w-d label.down.safe span {
+  display: block;
+}
+
+/* Hide the .reverse buttons until they are needed */
+div[class] label.reverse {
+  display: none;
+}
+
+div[class] label.up.reverse span {
+  border-bottom-color: blue;
+}
+div[class] label.down.reverse span {
+  border-top-color: blue;
+}
+
+/* Show :hover states for all buttons */
+label.down:hover span {
+  border-top-color: yellow!important;
+}
+
+label.up:hover span {
+  border-bottom-color: yellow!important;
+}
+
+/* W-D */
+div.w-d:has(.down.forwards :checked) {
+  .up.forwards {
+    display: none
+  }
+  .up.reverse {
+    display: block;
+  }
+  .safe :checked + span,
+  .safe :checked + span:hover {
+    /* DELETE */
+    border-top-color: purple!important;
+  }
+
+  span[class] {
+    animation: w-d-short 0.6s forwards linear;
+  }
+
+  /* Hide the lure on the next button */
+  & + div.e-o {
+    .lure {
+      display: none;
+    }
+    .down.safe span {
+      display: block;;
+    }
+  }
+}
+
+div.w-d:has(.up.reverse :checked) {
+  span[class] {
+    animation: d-w-short 0.6s forwards linear;
+  }
+}
+
+div.w-d:has(.up.forwards :checked) {
+  .down.forwards {
+    display: none
+  }
+  .down.reverse {
+    display: block;
+  }
+  span[class] {
+    animation: w-d-long 2s forwards linear;
+  }
+}
+
+div.w-d:has(.down.reverse :checked) {
+  span[class] {
+    animation: d-w-long 2s forwards linear;
+  }
+}
+
+/* E-O */
+div.e-o:has(.down.forwards :checked) {
+  .up.forwards {
+    display: none
+  }
+  .up.reverse {
+    display: block;
+  }
+  span[class] {
+    animation: e-o-short 1s forwards linear;
+  }
+
+  .safe :checked + span,
+  .safe :checked + span:hover {
+    /* DELETE */
+    border-top-color: purple!important;
+  }
+
+  /* Hide the lure on the next button but one*/
+  & ~ div.l-e {
+    .lure {
+      display: none;
+    }
+    .up.safe span {
+      display: block;;
+    }
+  }
+}
+
+div.e-o:has(.up.reverse :checked) {
+  span[class] {
+    animation: o-e-short 1s forwards linear;
+  }
+}
+
+div.e-o:has(.up.forwards :checked) {
+  .down.forwards {
+    display: none
+  }
+  .down.reverse {
+    display: block;
+  }
+  span[class] {
+    animation: e-o-long 1.6s forwards linear;
+  }
+}
+
+div.e-o:has(.down.reverse :checked) {
+  span[class] {
+    animation: o-e-long 1.6s forwards linear;
+  }
+}
+
+/* L-N */
+div.l-n:has(.down.forwards :checked) {
+  .up.forwards {
+    display: none
+  }
+  .up.reverse {
+    display: block;
+  }
+  span[class] {
+    animation: l-n-short 0.3s forwards linear;
+  }
+
+  .safe :checked + span,
+  .safe :checked + span:hover {
+    /* DELETE */
+    border-top-color: purple!important;
+  }
+}
+
+div.l-n:has(.up.reverse :checked) {
+  span[class] {
+    animation: n-l-short 0.3s forwards linear;
+  }
+}
+
+div.l-n:has(.up.forwards :checked) {
+  .down.forwards {
+    display: none
+  }
+  .down.reverse {
+    display: block;
+  }
+  span[class] {
+    animation: l-n-long 2.4s forwards linear;
+  }
+}
+
+div.l-n:has(.down.reverse :checked) {
+  span[class] {
+    animation: n-l-long 2.4s forwards linear;
+  }
+}
+
+
+/* L-E */
+main:has(.l-e .up.forwards :checked) {
+  div.l-e {
+    .down.forwards {
+      display: none
+    }
+    .down.reverse {
+      display: block;
+    }
+    span[class] {
+      animation: l-e-short 0.8s forwards linear;
+    }
+
+    .safe :checked + span,
+    .safe :checked + span:hover {
+      /* DELETE */
+      border-bottom-color: purple!important;
+    }
+  }
+
+  /* Hide the lure on the previous button */
+  div.l-n {
+    .lure {
+      display: none;
+    }
+    .down.safe span {
+      display: block;;
+    }
+  }
+}
+
+main div.l-e:has(.down.reverse :checked) {
+  span[class] {
+    animation: e-l-short 0.8s forwards linear;
+  }
+}
+
+main div.l-e:has(.down.forwards :checked) {
+  .up.forwards {
+    display: none
+  }
+  .up.reverse {
+    display: block;
+  }
+  span[class] {
+    animation: l-e-long 1.4s forwards linear;
+  }
+}
+
+main div.l-e:has(.up.reverse :checked) {
+  span[class] {
+    animation: e-l-long 1.4s forwards linear;
+  }
+}
+
+
+
+
+div[class] label input:checked + span {
+  opacity: 0.5
 }
