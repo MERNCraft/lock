@@ -32,7 +32,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   color: var(--light);
   background-color: var(--dark);
 
@@ -130,30 +130,30 @@ div.lock {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   div {
     display: flex;
     flex-direction: column;
     align-items: center;
-  
+
     /* Default settings for up and down arrows */
     label {
       display: block;
       position: relative;
-  
+
       span {
         font-size: 0;
         border: var(--arrow) solid transparent;
         display: block;
       }
-  
+
       /* By default, show the warning button */
       &.up {
         span {
           border-bottom: var(--warning);
         }
       }
-  
+
       &.down {
         span {
           border-top: var(--warning);
@@ -197,11 +197,11 @@ div.lock {
   /* Only show the safe triangle for the .safe buttons...
   * ... and hide them all...
   */
-  div[class] label.down.safe span {
+  label.down.safe span {
     border-top: var(--triangle);
     display: none;
   }
-  div[class] label.up.safe span {
+  label.up.safe span {
     border-bottom: var(--triangle);
     display: none;
   }
@@ -214,13 +214,6 @@ div.lock {
   div[class] label.reverse {
     display: none;
   }
-
-  /* div[class] label.up.reverse span {
-    border-bottom-color: blue;
-  }
-  div[class] label.down.reverse span {
-    border-top-color: blue;
-  } */
 
   /* Show :hover states for all buttons... */
   div[class] label.down:hover span {
@@ -237,165 +230,137 @@ div.lock {
     border-bottom-color: var(--used);
   }
 
+
   /* W-D */
-  div.w-d:has(.down.forwards :checked) {
-    .up.forwards {
-      display: none
-    }
-    .up.reverse {
-      display: block;
-    }
-    /* .safe :checked + span,
-    .safe :checked + span:hover {
-      border-top-color: purple!important;
-    } */
-
-    span[class] {
-      animation: w-d-short 0.6s forwards linear;
-    }
-
-    /* Hide the lure on the next button */
-    & + div.e-o {
-      .lure {
-        display: none;
+  div.w-d {
+    &:has(.down.forwards :checked) {
+      span[class] {
+        animation: w-d-short 0.6s forwards linear;
       }
-      .down.safe span {
-        display: block;;
+
+      /* Hide the lure on the next button... */
+      & + div.e-o {
+        .lure {
+          display: none;
+        }
+        /* ... and show the .safe button */
+        .down.safe span {
+          display: block;;
+        }
+      }
+      /* To be overruled if the .lure button is :checked */
+    }
+
+    &:has(.up.reverse :checked) {
+      span[class] {
+        animation: d-w-short 0.6s forwards linear;
       }
     }
-  }
 
-  div.w-d:has(.up.reverse :checked) {
-    span[class] {
-      animation: d-w-short 0.6s forwards linear;
+    &:has(.up.forwards :checked) {
+      span[class] {
+        animation: w-d-long 2s forwards linear;
+      }
     }
-  }
 
-  div.w-d:has(.up.forwards :checked) {
-    .down.forwards {
-      display: none
-    }
-    .down.reverse {
-      display: block;
-    }
-    span[class] {
-      animation: w-d-long 2s forwards linear;
-    }
-  }
-
-  div.w-d:has(.down.reverse :checked) {
-    span[class] {
-      animation: d-w-long 2s forwards linear;
+    &:has(.down.reverse :checked) {
+      span[class] {
+        animation: d-w-long 2s forwards linear;
+      }
     }
   }
 
   /* E-O */
-  div.e-o:has(.down.forwards :checked) {
-    .up.forwards {
-      display: none
-    }
-    .up.reverse {
-      display: block;
-    }
-    span[class] {
-      animation: e-o-short 1s forwards linear;
-    }
-
-    /* .safe :checked + span,
-    .safe :checked + span:hover {
-      border-top-color: purple!important;
-    } */
-
-    /* Hide the lure on the next button but one*/
-    & ~ div.l-e {
-      .lure {
-        display: none;
+  div.e-o {
+    &:has(.down.forwards :checked) {
+      .up.forwards {
+        display: none
       }
-      .up.safe span {
-        display: block;;
+      .up.reverse {
+        display: block;
+      }
+      span[class] {
+        animation: e-o-short 1s forwards linear;
+      }
+
+      /* Hide the lure on the next button but one*/
+      & ~ div.l-e {
+        .lure {
+          display: none;
+        }
+        .up.safe span {
+          display: block;;
+        }
       }
     }
-  }
 
-  div.e-o:has(.up.reverse :checked) {
-    span[class] {
-      animation: o-e-short 1s forwards linear;
-    }
-  }
-
-  div.e-o:has(.up.forwards :checked) {
-    .down.forwards {
-      display: none
-    }
-    .down.reverse {
-      display: block;
-    }
-    span[class] {
-      animation: e-o-long 1.6s forwards linear;
-    }
-  }
-
-  div.e-o:has(.down.reverse :checked) {
-    span[class] {
-      animation: o-e-long 1.6s forwards linear;
-    }
-  }
-
-  /* L-N */
-  div.l-n:has(.down.forwards :checked) {
-    .up.forwards {
-      display: none
-    }
-    .up.reverse {
-      display: block;
-    }
-    span[class] {
-      animation: l-n-short 0.3s forwards linear;
+    &:has(.up.reverse :checked) {
+      span[class] {
+        animation: o-e-short 1s forwards linear;
+      }
     }
 
-    /* .safe :checked + span,
-    .safe :checked + span:hover {
-      border-top-color: purple!important;
-    } */
-  }
-
-  div.l-n:has(.up.reverse :checked) {
-    span[class] {
-      animation: n-l-short 0.3s forwards linear;
-    }
-  }
-
-  div.l-n:has(.up.forwards :checked) {
-    .down.forwards {
-      display: none
-    }
-    .down.reverse {
-      display: block;
-    }
-    .down.safe {
-      display: none;
-    }
-    span[class] {
-      animation: l-n-long 2.4s forwards linear;
-    }
-  }
-
-  div.l-n:has(.down.reverse :checked) {
-    span[class] {
-      animation: n-l-long 2.4s forwards linear;
-    }
-  }
-
-
-  /* L-E */
-  &:has(div.l-e .up.forwards :checked) {
-    & .l-e {
+    &:has(.up.forwards :checked) {
       .down.forwards {
         display: none
       }
       .down.reverse {
         display: block;
       }
+      span[class] {
+        animation: e-o-long 1.6s forwards linear;
+      }
+    }
+
+    &:has(.down.reverse :checked) {
+      span[class] {
+        animation: o-e-long 1.6s forwards linear;
+      }
+    }
+  }
+
+  /* L-N */
+  div.l-n {
+    &:has(.down.forwards :checked) {
+      span[class] {
+        animation: l-n-short 0.3s forwards linear;
+      }
+    }
+
+    &:has(.up.reverse :checked) {
+      span[class] {
+        animation: n-l-short 0.3s forwards linear;
+      }
+    }
+
+    &:has(.up.forwards :checked) {
+      .down.forwards {
+        display: none
+      }
+      .down.reverse {
+        display: block;
+      }
+      .down.safe {
+        display: none;
+      }
+      span[class] {
+        animation: l-n-long 2.4s forwards linear;
+      }
+    }
+
+    &:has(.down.reverse :checked) {
+      span[class] {
+        animation: n-l-long 2.4s forwards linear;
+      }
+    }
+  }
+
+
+  /* L-E is more complex because it removes a .lure in
+   * the previous div.l-n
+   */
+  &:has(div.l-e .up.forwards :checked) {
+    & .l-e {
       span[class]{
         animation: l-e-short 0.8s forwards linear;
       }
@@ -445,6 +410,66 @@ div.lock {
     }
   }
 }
+
+/* Regardless of whether a .lure button should be hidden
+ * or visible, ensure that the currently :checked button
+ * takes precedence. Grudging use of !important
+*/
+.lock div:has(.up.forwards :checked) {
+  /* Hide all forward buttons except the :checked one... */
+  & .forwards:not(:has(:checked)) {
+    display: none!important;
+  }
+  /* ... which must be displayed... */
+  & label.up.forwards:has(input:checked) {
+    &,
+    & span { /* ...along with its span */
+      display: block!important;
+    }
+  }
+
+  /* Ensure that the opposite .reverse button is shown */
+  & label.down:not(.reverse) {
+    display: none!important;
+  }
+  & label.down.reverse {
+    &,
+    & span {
+      display: block!important;
+    }
+  }
+}
+
+.lock div:has(.down.forwards :checked) {
+  /* Hide all forward buttons except the :checked one... */
+  & .forwards:not(:has(:checked)) {
+    display: none!important;
+  }
+  /* ... which must be displayed... */
+  & label.down.forwards:has(input:checked) {
+    &,
+    & span { /* ...along with its span */
+      display: block!important;
+    }
+  }
+
+  /* Ensure that the opposite .reverse button is shown */
+  & label.up:not(.reverse) {
+    &,
+    & span {
+      display: none!important;
+    }
+  }
+  & label.up.reverse {
+    &,
+    & span{
+      display: block!important;
+    }
+  }
+}
+
+
+/* Success or failure message when PIN is correct...ish */
 
 div.message {
   position: absolute;
@@ -508,8 +533,6 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   92% { counter-increment: w-d -19 } /* d */
  100% { counter-increment: w-d -19 }
 }
-
-
 @keyframes d-w-short {
    0% { counter-increment: w-d -19 } /* d */
    8% { counter-increment: w-d -19 } /* d */
@@ -522,7 +545,6 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   92% { counter-increment: w-d  +0 } /* w */
  100% { }
 }
-
 @keyframes w-d-long {
    0% { }                            /* w */
    5% { counter-increment: w-d  -0 } /* w */
@@ -546,7 +568,6 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   95% { counter-increment: w-d -18 } /* e */
  100% { counter-increment: w-d -19 } /* d */
 }
-
 @keyframes d-w-long {
    0% { counter-increment: w-d -19 } /* d */
    5% { counter-increment: w-d -18 } /* e */
@@ -585,7 +606,6 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   90%  { counter-increment: e-o +10 } /* o */
   100% { counter-increment: e-o +10 }
 }
-
 @keyframes o-e-short {
    0%  { counter-increment: e-o +10 }  /* e */
    1%  { counter-increment: e-o +10 } /* o */
@@ -600,7 +620,6 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   90%  { counter-increment: e-o +1  } /* f */
   100% { counter-increment: e-o +0 }
 }
-
 @keyframes e-o-long {
    0%  { }                            /* e */
    2%  { counter-increment: e-o  -1 } /* e */
@@ -622,7 +641,6 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   98%  { counter-increment: e-o +10 } /* o */
   100% { counter-increment: e-o +10 }
 }
-
 @keyframes o-e-long {
    0%  { counter-increment: e-o +10 } /* e */
    2%  { counter-increment: e-o +10 } /* o */
@@ -651,14 +669,12 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   60%  { counter-increment: l-n +2 } /* n */
   100% { counter-increment: l-n +2 }
 }
-
 @keyframes n-l-short {
   0%   { counter-increment: l-n +2 } /* n */
   60%  { counter-increment: l-n +2 } /* n */
   30%  { counter-increment: l-n +1 } /* m */
   100% { counter-increment: l-n +0 } /* l */
 }
-
 @keyframes l-n-long {
    0% { counter-increment: l-n  -0 } /* l */
    6% { counter-increment: l-n  -1 } /* k */
@@ -666,7 +682,7 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   14% { counter-increment: l-n  -3 } /* i */
   18% { counter-increment: l-n  -4 } /* h */
   22% { counter-increment: l-n  -5 } /* g */
-  26% { counter-increment: l-n  -6 } /*  */
+  26% { counter-increment: l-n  -6 } /* f */
   30% { counter-increment: l-n  -7 } /* e */
   34% { counter-increment: l-n  -8 } /* d */
   38% { counter-increment: l-n  -9 } /* c */
@@ -686,7 +702,6 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   94% { counter-increment: l-n  +3 } /* o */
  100% { counter-increment: l-n  +2 } /* n */
 }
-
 @keyframes n-l-long {
    0% { counter-increment: l-n  +2 } /* n */
    6% { counter-increment: l-n  +3 } /* o */
@@ -706,7 +721,7 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   62% { counter-increment: l-n  -9 } /* c */
   66% { counter-increment: l-n  -8 } /* d */
   70% { counter-increment: l-n  -7 } /* e */
-  74% { counter-increment: l-n  -6 } /*  */
+  74% { counter-increment: l-n  -6 } /* f */
   78% { counter-increment: l-n  -5 } /* g */
   82% { counter-increment: l-n  -4 } /* h */
   86% { counter-increment: l-n  -3 } /* i */
@@ -726,7 +741,6 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   86% { counter-increment: l-e -7 } /* e */
  100% { counter-increment: l-e -7 }
 }
-
 @keyframes e-l-short {
    0% { counter-increment: l-e -7 } /* e */
   14% { counter-increment: l-e -7 } /* e */
@@ -738,7 +752,6 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   86% { counter-increment: l-e -1 } /* k */
  100% { counter-increment: l-e -0 }
 }
-
 @keyframes l-e-long {
   0%  { }                            /* l */
   5%  { counter-increment: l-e  +1 } /* m */
@@ -762,7 +775,6 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   95% { counter-increment: l-e -7  } /* e */
  100% { counter-increment: l-e -7  }
 }
-
 @keyframes e-l-long {
   0%  { counter-increment: l-e -7  } /* e */
   5%  { counter-increment: l-e -8  } /* d */
