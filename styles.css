@@ -12,7 +12,7 @@
   --used:  #444;
   --black: #000;
 
-  --main: 300px;
+  --form: 300px;
   --half: 150px;
   --size:  50px;
   --pad:    8px;
@@ -45,9 +45,9 @@ body {
 
 }
 
-main {
+form {
   position: relative;
-  width: var(--main);
+  width: var(--form);
   height: var(--half);
 
   border: var(--brdr) solid white;
@@ -62,7 +62,7 @@ main {
 
 
 /* Enter AND Play Again BUTTONS */
-
+button,
 .button {
   background-color: var(--btn);
   border: var(--brdr) outset var(--rim);
@@ -74,11 +74,11 @@ main {
   cursor: pointer;
   color: inherit;
 }
-
+button:hover,
 .button:hover {
   color: var(--white);
 }
-
+button:hover:active,
 .button:hover:active {
   border-style: inset;
   background-color: var(--bg);
@@ -90,8 +90,8 @@ main {
   pointer-events: none;
 }
 
-/* Customize Play Again link's position */
-a.replay {
+/* Customize Play Again button's position */
+button {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -473,7 +473,7 @@ div.lock {
 
 div.message {
   position: absolute;
-  width: var(--main);
+  width: var(--form);
   height: var(--half);
   background-color: var(--bg);
   text-align: center;
@@ -482,12 +482,14 @@ div.message {
   display: none;
   pointer-events: none;
 }
-main:has(.w-d .forwards :checked):has(.e-o .forwards :checked):has(.l-n .forwards :checked):has(.l-e .forwards :checked) {
+form:has(.w-d .forwards :checked):has(.e-o .forwards :checked):has(.l-n .forwards :checked):has(.l-e .forwards :checked) {
+  button,
   .button {
     pointer-events: all;
     background-color: var(--red);
     border-color: var(--brred);
   }
+  button:hover:active,
   .button:hover:active {
     background-color: var(--black);
   }
@@ -502,11 +504,17 @@ main:has(.w-d .forwards :checked):has(.e-o .forwards :checked):has(.l-n .forward
   }
 }
 
-main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):has(.l-e .safe :checked) {
+form:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):has(.l-e .safe :checked) {
+  button,
   .button {
     pointer-events: all;
     background-color: var(--btn);
     border-color: var(--rim);
+  }
+
+  button:hover:active,
+  .button:hover:active {
+    background-color: var(--bg);
   }
 
   &:has(.button :checked) .message {
@@ -798,4 +806,3 @@ main:has(.w-d .safe :checked):has(.e-o .safe :checked):has(.l-n .safe :checked):
   95% { counter-increment: l-e  +1 } /* m */
  100% { counter-increment: l-e  +0 } /* l */
 }
-
